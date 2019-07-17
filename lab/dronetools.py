@@ -115,16 +115,40 @@ class drone:
 
 
 
-    def set_mode_to(self):
+#    def set_mode_to(self):
+#        self.the_connection.mav.command_long_send(
+#        self.the_connection.target_system, #1# autopilot system id
+#        self.the_connection.target_component, #1# autopilot component id
+#        176, #MAV_CMD_DO_SET_MODE (176 ) 
+#        208,
+#        0, 
+#        0,
+#        0.0,0.0,0.0,0.0,0.0, # unused parameters for this command,
+#        force_mavlink1=True)
+
+    def set_mode_to_offboard(self):
+
         self.the_connection.mav.command_long_send(
-        self.the_connection.target_system, #1# autopilot system id
-        self.the_connection.target_component, #1# autopilot component id
-        176, #MAV_CMD_DO_SET_MODE (176 ) 
-        208,
-        0, 
-        0,
-        0.0,0.0,0.0,0.0,0.0, # unused parameters for this command,
-        force_mavlink1=True)
+
+            self.the_connection.target_system,  # 1# autopilot system id
+
+            self.the_connection.target_component,  # 1# autopilot component id
+
+            176,  # MAV_CMD_DO_SET_MODE (176 )
+
+            0,  # confirmation
+
+            129,
+
+            6,
+
+            0,
+
+            0.0, 0.0, 0.0, 0.0,  # unused parameters for this command,
+
+            force_mavlink1=True)
+
+
 
 
     def from_point_to_point_under_optitrack_UDP(self ,start_x, start_y, start_z, target_x, target_y, target_z, velocity): # start point, target_point, trajectory_velocity(m/s)
